@@ -10,8 +10,8 @@ import os, sys
 # User will locate Img they and and create a Pillow Object from it to use in ColorGram.py
 
 def locateImg():
-    imgFinder = filedialog.askopenfilename(title="select Image File", fileTypes=(('JPG file', "*.jpg"), ("PNG file", '.*.png')))  # initialdir = os.get pwd? )
-
+    imgFinder = filedialog.askopenfilename(title = "select Image File", fileTypes = (('JPG file', "*.jpg"), ("PNG file", '.*.png')), intialdir = os.getcwd())
+    
 
 # Main User Interface
 
@@ -35,11 +35,6 @@ for color in extractedColors:
 t.colormode(255)
 
 # Sample color list made from above.
-# colorList = [(247, 242, 234), (237, 242, 248), (249, 240, 244), (238, 248, 244), (137, 167, 198), (197, 138, 149),
-#              (211, 152, 114), (26, 37, 57), (53, 105, 145), (144, 179, 162), (156, 66, 53), (232, 213, 98),
-#              (138, 67, 76), (158, 25, 33), (29, 53, 47), (231, 164, 171), (50, 38, 44), (53, 109, 89), (196, 94, 104),
-#              (207, 85, 72), (155, 29, 24), (48, 41, 37), (18, 94, 69), (234, 170, 160), (174, 189, 215),
-#              (109, 123, 160), (25, 60, 112), (172, 203, 189), (43, 152, 198), (158, 202, 220), (250, 111, 231)]
 
 # turtle program to run colors
 
@@ -47,6 +42,7 @@ screen = t.Screen()
 screen.title("Color Palette Generator")
 generator = t.Turtle()
 generator.shape("arrow")
+generator.hideTurtle()
 generator.speed("fastest")
 generator.penup()
 generator.setheading(135)
