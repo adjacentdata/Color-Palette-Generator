@@ -23,5 +23,5 @@ Packages Used:
 * Random
 
 ## Contributors
-Albert Perez
-Henry Song
+* Albert Perez
+* Henry Song
