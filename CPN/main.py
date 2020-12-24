@@ -11,7 +11,8 @@ import os, sys
 
 def locateImg():
     imgFinder = filedialog.askopenfilename(title="select Image File", fileTypes=(('JPG file', "*.jpg"), ("PNG file", '.*.png')))  # initialdir = os.get pwd? )
-
+    img = Image.open(imgFinder)
+    img = ImageTk.PhotoImage(img)
 
 # Main User Interface
 
