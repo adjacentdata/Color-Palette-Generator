@@ -6,26 +6,32 @@ from PIL import Image, ImageTk
 import colorgram
 import os, sys
 
+
+colorList = []
+
 #Methods
 
 
-#Methods
-# def locateImg():
-#     imgFinder = filedialog.askopenfilename(title="select Image File", fileTypes=(('JPG file', "*.jpg"), ("PNG file", '.*.png')))  # initialdir = os.get pwd? )
-#     img = Image.open(imgFinder)
-#     img = ImageTk.PhotoImage(img)
+def extractColors():
+    locateImg()
+    extractedColors = colorgram.extract('test.png', 20)
+    for color in extractedColors:
+        newColor = (color.rgb.r, color.rgb.g, color.rgb.b)
+        colorList.append(newColor)
 
-# extractedColors = colorgram.extract('test.png', 20)
-# colorList = []  # can uncomment and mess around with it.
-# for color in extractedColors:
-#     newColor = (color.rgb.r, color.rgb.g, color.rgb.b)
-#     colorList.append(newColor)
 
-# print(colorList)
-def generateColors(colorList):
+def pressedTurtle():
+    generator = t.Turtle()
+    generator.shape("circle")
+    generator.hideturtle()
+    generator.speed("fastest")
+    generator.penup()
     generator.setheading(135)
+    numOfColors = len(colorList)
     generator.forward(375)
     generator.setheading(0)
+    t.colormode(255)
+
     for dot in range(1, numOfColors):
         color = colorList[dot - 1]
         generator.dot(50, color)
@@ -37,7 +43,10 @@ def generateColors(colorList):
             generator.forward(500)
             generator.setheading(0)
 
-def saveImage():
+    saveImage(generator)
+
+
+def saveImage(generator):
     #UPDATE: We might have to save from the Tkinter instead of the turtle screen.
     # canvas saving features. Currently saves as a .eps file (which can be opened with Preview as a PDF) but working on
     # converting the .eps file to a universal .png or .jpg file
@@ -56,10 +65,8 @@ root = Tk()
 root.title("Color Palette Generator")
 root.geometry("800x600")
 root.config(bg = "maroon")
-canvas = Canvas(master=root, width=600, height = 500)
-canvas.grid(row=0, padx=30, pady=20, columnspan= 6)
-t.colormode(255)
-generator = t.RawTurtle(canvas)
+canvas = Canvas(master=root, width=400, height = 400)
+canvas.grid(row=0, padx=20, pady=20, columnspan= 6)
 
 #Buttons:
 
@@ -70,14 +77,6 @@ imageLocation = ttk.Button(root, text="Import Image", style='TButton')
 savePalette = ttk.Button(root, text="Save Palette")
 imageLocation.grid(row=1, column=1)
 savePalette.grid(row=1, column=2)
-generator.shape("circle")
-generator.hideturtle()
-generator.speed("fastest")
-generator.penup()
-generator.setheading(135)
-
-
-
 
 
 
@@ -91,20 +90,7 @@ colorList = [(247, 242, 234), (237, 242, 248), (249, 240, 244), (238, 248, 244),
 # turtle program to run colors
 
 
-numOfColors = len(colorList)
-generator.forward(375)
-generator.setheading(0)
 
-for dot in range(1, numOfColors):
-    color = colorList[dot - 1]
-    generator.dot(50, color)
-    generator.forward(50)
-    if dot % 10 == 0:
-        generator.setheading(270)
-        generator.forward(50)
-        generator.setheading(180)
-        generator.forward(500)
-        generator.setheading(0)
 
 
 root.mainloop()
