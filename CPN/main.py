@@ -74,22 +74,28 @@ def saveImage(generator):
 
     # Option to save the image
 
+#Main
 root = Tk()
 root.title("Color Palette Generator")
-root.geometry("258x30")
+root.geometry("640x400")
 root.config(bg = "maroon")
 
+#image
+path = ""
+canvas = Canvas(root, width= 300, height= 300)
+canvas.grid(row=0, pady=15, columnspan= 10)
+canvas.pack()
+img = ImageTk.PhotoImage(Image.open("color-pencil-1022033_640.jpg"))
+canvas.create_image(10,50,anchor=NW, image=img)
 
 #Buttons:
-
-#ImgLocator
 style = ttk.Style()
 style.configure('TButton', padding=6, relief="flat", foreground="black", font='georgia 13 bold')
 imageLocation = ttk.Button(root, text="Import Image", style='TButton', command=pressedTurtle)
 savePalette = ttk.Button(root, text="Save Palette")
-imageLocation.grid(row=1, column=1)
-savePalette.grid(row=1, column=2)
 
+imageLocation.place(anchor='center', relx=.5, rely=.85)
+savePalette.place(anchor='center', relx=.5, rely = .95)
 
 
 
