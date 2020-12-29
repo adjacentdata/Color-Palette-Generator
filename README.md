@@ -25,3 +25,6 @@ Packages Used:
 ## Contributors
 * Albert Perez
 * Henry Song
+
+##
+The image in the program was downloaded from PixaBay.
