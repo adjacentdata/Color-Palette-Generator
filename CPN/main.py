@@ -86,7 +86,7 @@ canvas = Canvas(root, width= 300, height= 300)
 canvas.grid(row=0, pady=15, columnspan= 10)
 canvas.pack()
 img = ImageTk.PhotoImage(Image.open("color-pencil-1022033_640.jpg"))
-canvas.create_image(10,50,anchor=NW, image=img)
+canvas.create_image(0,0,anchor=NW, image=img)
 
 #Buttons:
 style = ttk.Style()
