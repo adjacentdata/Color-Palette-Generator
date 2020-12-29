@@ -54,25 +54,25 @@ def pressedTurtle():
             generator.forward(500)
             generator.setheading(0)
             
-            
+    saveImage()
     screen.exitonclick()
     # saveImage(generator)
 
 
-# def saveImage(generator):
-#     #UPDATE: We might have to save from the Tkinter instead of the turtle screen.
-#     # canvas saving features. Currently saves as a .eps file (which can be opened with Preview as a PDF) but working on
-#     # converting the .eps file to a universal .png or .jpg file
-#     # Requires installing ghostscript (using 'pip install' gave me errors, so i used homebrew to install the package)
-#     screenCapture = generator.getscreen()  # hs = captures the screen of the 'generator', to be used later for exporting the pallet
-#     screenCapture.getcanvas().postscript(file="out.eps")  # hs = exports the screenCapture as a eps file (typescript)
-#     outputFile = "output_result.png"  # hs = name of output file of final .png output file
-#     Image.open("out.eps").convert('RGBA').save(outputFile,lossless=True)  # hs = converts eps file to RGBA(.png) color profile and saves as .png
-#     # deletes the .eps file HOWEVER .eps seems to be higher quality than the .png (up to you if you want to keep
-#     # the .eps file)
-#     # os.remove("out.eps")  # hs = removes 'out.eps' from system
-#
-#     # Option to save the image
+def saveImage(generator):
+    #UPDATE: We might have to save from the Tkinter instead of the turtle screen.
+    # canvas saving features. Currently saves as a .eps file (which can be opened with Preview as a PDF) but working on
+    # converting the .eps file to a universal .png or .jpg file
+    # Requires installing ghostscript (using 'pip install' gave me errors, so i used homebrew to install the package)
+    screenCapture = generator.getscreen()  # hs = captures the screen of the 'generator', to be used later for exporting the pallet
+    screenCapture.getcanvas().postscript(file="out.eps")  # hs = exports the screenCapture as a eps file (typescript)
+    outputFile = "output_result.png"  # hs = name of output file of final .png output file
+    Image.open("out.eps").convert('RGBA').save(outputFile,lossless=True)  # hs = converts eps file to RGBA(.png) color profile and saves as .png
+    # deletes the .eps file HOWEVER .eps seems to be higher quality than the .png (up to you if you want to keep
+    # the .eps file)
+    # os.remove("out.eps")  # hs = removes 'out.eps' from system
+
+    # Option to save the image
 
 root = Tk()
 root.title("Color Palette Generator")
