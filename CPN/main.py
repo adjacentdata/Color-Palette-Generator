@@ -33,7 +33,6 @@ colorList = [(247, 242, 234), (237, 242, 248), (249, 240, 244), (238, 248, 244),
 def pressedTurtle():
     generator = t.Turtle()
     screen = t.Screen()
-    screen.exitonclick()
     generator.shape("circle")
     generator.hideturtle()
     generator.speed("fastest")
@@ -54,7 +53,9 @@ def pressedTurtle():
             generator.setheading(180)
             generator.forward(500)
             generator.setheading(0)
-
+            
+            
+    screen.exitonclick()
     # saveImage(generator)
 
 
