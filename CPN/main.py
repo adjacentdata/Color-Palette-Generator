@@ -67,7 +67,7 @@ def pressedTurtle(numberOfColors):
             generator.setheading(180)
             generator.forward(500)
             generator.setheading(0)
-    # saveImage(generator)
+    saveImage(generator)
     screen.exitonclick()
 
 def saveImage(generator):
