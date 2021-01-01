@@ -2,38 +2,52 @@ import turtle as t
 from tkinter import *
 from tkinter import ttk
 from tkinter import filedialog
+from tkinter import messagebox
 from PIL import Image, ImageTk
 import colorgram
 import os, sys
 
 #Methods
+def popUp():
+    global pop
+    pop = Toplevel(root)
+    popLabel = Label(pop, text="Type in the Number of Colors from 1 to 30")
+    popLabel.pack()
+    global popEntry
+    popEntry = Entry(pop)
+    popEntry.pack()
+    popButton = Button(pop, text='Rock n Roll', command=clear)
+    popButton.pack()
+
+
+def extractColors(numberOfColors):
+    img = (locateImg())
+    extractedColors = colorgram.extract(img, numberOfColors + 1)
+    colorList = []  # can uncomment and mess around with it.
+    for color in extractedColors:
+        newColor = (color.rgb.r, color.rgb.g, color.rgb.b)
+        colorList.append(newColor)
+    return colorList
+
+def clear():
+    numberOfColors = (int)(popEntry.get())
+    if numberOfColors > 30 or numberOfColors < 1:
+        messagebox.showerror("Title", "Invalid Input")
+    else:
+        pop.destroy()
+        pressedTurtle(numberOfColors)
+
 
 def locateImg():
     img = filedialog.askopenfilename()
     return img
 
 
-def extractColors():
-    img = (locateImg())
-    extractedColors = colorgram.extract(img, 10)
-    colorList = []  # can uncomment and mess around with it.
-    for color in extractedColors:
-        newColor = (color.rgb.r, color.rgb.g, color.rgb.b)
-        colorList.append(newColor)
-    return colorList
-# print(colorList)
-# Sample color list made from above.
-# colorList = [(247, 242, 234), (237, 242, 248), (249, 240, 244), (238, 248, 244), (137, 167, 198), (197, 138, 149),
-#              (211, 152, 114), (26, 37, 57), (53, 105, 145), (144, 179, 162), (156, 66, 53), (232, 213, 98),
-#              (138, 67, 76), (158, 25, 33), (29, 53, 47), (231, 164, 171), (50, 38, 44), (53, 109, 89), (196, 94, 104),
-#              (207, 85, 72), (155, 29, 24), (48, 41, 37), (18, 94, 69), (234, 170, 160), (174, 189, 215),
-#              (109, 123, 160), (25, 60, 112), (172, 203, 189), (43, 152, 198), (158, 202, 220), (250, 111, 231)]
 
-def pressedTurtle():
-    colorList = extractColors()
+def pressedTurtle(numberOfColors):
+    colorList = extractColors(numberOfColors)
     generator = t.Turtle()
     screen = t.Screen()
-
     generator.shape("circle")
     generator.hideturtle()
     generator.speed("fastest")
@@ -53,26 +67,15 @@ def pressedTurtle():
             generator.setheading(180)
             generator.forward(500)
             generator.setheading(0)
-
-
-
-    screen.exitonclick()
     # saveImage(generator)
+    screen.exitonclick()
 
-# def saveImage(generator):
-#     #UPDATE: We might have to save from the Tkinter instead of the turtle screen.
-#     # canvas saving features. Currently saves as a .eps file (which can be opened with Preview as a PDF) but working on
-#     # converting the .eps file to a universal .png or .jpg file
-#     # Requires installing ghostscript (using 'pip install' gave me errors, so i used homebrew to install the package)
-#     screenCapture = generator.getscreen()  # hs = captures the screen of the 'generator', to be used later for exporting the pallet
-#     screenCapture.getcanvas().postscript(file="out.eps")  # hs = exports the screenCapture as a eps file (typescript)
-#     outputFile = "output_result.png"  # hs = name of output file of final .png output file
-#     Image.open("out.eps").convert('RGBA').save(outputFile,lossless=True)  # hs = converts eps file to RGBA(.png) color profile and saves as .png
-#     # deletes the .eps file HOWEVER .eps seems to be higher quality than the .png (up to you if you want to keep
-#     # the .eps file)
-#     # os.remove("out.eps")  # hs = removes 'out.eps' from system
-#
-#     # Option to save the image
+def saveImage(generator):
+    screenCapture = generator.getscreen()
+    screenCapture.getcanvas().postscript(file="out.eps")
+    outputFile = "output_result.png"
+    Image.open("out.eps").convert('RGBA').save(outputFile, lossless=True)
+    os.remove("out.eps")
 
 
 #Main
@@ -92,7 +95,7 @@ canvas.create_image(0,0,anchor=NW, image=img)
 #Buttons:
 style = ttk.Style()
 style.configure('TButton', padding=6, relief="flat", foreground="black", font='georgia 13 bold')
-imageLocation = ttk.Button(root, text="Import Image", style='TButton', command=pressedTurtle)
+imageLocation = ttk.Button(root, text="Import Image", style='TButton', command=popUp)
 savePalette = ttk.Button(root, text="Save Palette")
 
 imageLocation.place(anchor='center', relx=.5, rely=.85)
