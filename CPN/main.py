@@ -8,16 +8,14 @@ import os, sys
 
 #Methods
 
+def locateImg():
+    img = filedialog.askopenfilename()
+    return img
 
-#Methods
-# def locateImg():
-#     imgFinder = filedialog.askopenfilename(title="select Image File", fileTypes=(('JPG file', "*.jpg"), ("PNG file", '.*.png')))  # initialdir = os.get pwd? )
-#     img = Image.open(imgFinder)
-#     img = ImageTk.PhotoImage(img)
 
 def extractColors():
-    # locatedImg = locateImg() # will replace test.png
-    extractedColors = colorgram.extract('test.png', 20)
+    img = (locateImg())
+    extractedColors = colorgram.extract(img, 10)
     colorList = []  # can uncomment and mess around with it.
     for color in extractedColors:
         newColor = (color.rgb.r, color.rgb.g, color.rgb.b)
@@ -61,7 +59,6 @@ def pressedTurtle():
     screen.exitonclick()
     # saveImage(generator)
 
-
 # def saveImage(generator):
 #     #UPDATE: We might have to save from the Tkinter instead of the turtle screen.
 #     # canvas saving features. Currently saves as a .eps file (which can be opened with Preview as a PDF) but working on
@@ -76,8 +73,6 @@ def pressedTurtle():
 #     # os.remove("out.eps")  # hs = removes 'out.eps' from system
 #
 #     # Option to save the image
-
-
 
 
 #Main
@@ -102,20 +97,5 @@ savePalette = ttk.Button(root, text="Save Palette")
 
 imageLocation.place(anchor='center', relx=.5, rely=.85)
 savePalette.place(anchor='center', relx=.5, rely = .95)
-
-
-
-
-
-
-
-
-
-
-# turtle program to run colors
-
-
-
-
 
 root.mainloop()
