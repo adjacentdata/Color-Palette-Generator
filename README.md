@@ -16,8 +16,13 @@ The objective of this project is to make it easier for artists to create color p
 
 Clone the project and it should be ready to use if you have all the packages downloaded in your IDE.
 
+```zsh
+pip install [package]
+```
+
 Packages Used:
 * Tkinter
+* GhostWriter
 * Pillow
 * Colorgram
 * Random
