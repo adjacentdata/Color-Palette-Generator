@@ -43,7 +43,6 @@ def locateImg():
     return img
 
 
-
 def pressedTurtle(numberOfColors):
     colorList = extractColors(numberOfColors)
     generator = t.Turtle()
@@ -69,6 +68,7 @@ def pressedTurtle(numberOfColors):
             generator.setheading(0)
     saveImage(generator)
     screen.exitonclick()
+    turtle.bye()
 
 def saveImage(generator):
     screenCapture = generator.getscreen()
