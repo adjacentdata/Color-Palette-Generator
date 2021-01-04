@@ -14,7 +14,7 @@ The objective of this project is to make it easier for artists to create color p
 
 ## Installation
 
-Clone the project and it should be ready to use if you have all the packages downloaded in your IDE.
+Clone the project and it should be ready to use if you have all the packages downloaded in your IDE. If you do not have the package, type the following in the command line: 
 
 ```zsh
 pip install [package]
