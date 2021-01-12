@@ -2,8 +2,6 @@
 ### A Digital Artist's Tool
 
 
-#### Note: This project is still in the works
-
 
 ## Goal
 
